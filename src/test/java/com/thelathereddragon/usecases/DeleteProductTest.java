@@ -11,7 +11,7 @@ import com.thelathereddragon.entities.Product;
 import com.thelathereddragon.ports.ProductRepo;
 import com.thelathereddragon.repos.InMemoryProductRepo;
 
-public class GetProductTest {
+public class DeleteProductTest {
   private ProductRepo productRepo;
   private Product product;
 
@@ -28,16 +28,13 @@ public class GetProductTest {
 
     productRepo.save(product);
   }
-
+  
   @Test
-  public void executeReturnsProductFromRepo() {
-    GetProduct getProduct = new GetProduct(productRepo);
-    Product productFromRepo = getProduct.execute(product);
-
-    assertEquals(productFromRepo.id, product.id);
-    assertEquals(productFromRepo.name, product.name);
-    assertEquals(productFromRepo.description, product.description);
-    assertEquals(productFromRepo.netWeight.value, product.netWeight.value, 0.0);
-    assertEquals(productFromRepo.netWeight.unit, product.netWeight.unit);
+  public void executeDeletesFromRepo() {
+    DeleteProduct deleteProduct = new DeleteProduct(productRepo);
+    deleteProduct.execute(product);
+    Product productFromRepo = productRepo.fetch(product);
+    
+    assertEquals(productFromRepo, null);
   }
 }
