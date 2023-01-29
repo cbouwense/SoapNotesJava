@@ -21,4 +21,13 @@ public class InMemoryProductRepo implements ProductRepo {
         .findFirst()
         .orElse(null);
   }
+
+  @Override
+  public void delete(Product product) {
+    products.remove(product);
+  }
+
+  public int size() {
+    return products.size();
+  }
 }

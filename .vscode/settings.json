@@ -1,9 +1,11 @@
 {
     "cSpell.words": [
+      "Redner's",
       "thelathereddragon",
       "usecases"
     ],
     "java.configuration.updateBuildConfiguration": "automatic",
     "coverage-gutters.showLineCoverage": true,
-    "maven.view": "hierarchical"
+    "maven.view": "hierarchical",
+    "java.debug.settings.onBuildFailureProceed": true
 }
