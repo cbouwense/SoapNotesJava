@@ -8,6 +8,13 @@
   <name>my-app</name>
   <url>https://github.com/microsoft/vscode-remote-try-java</url>
   <dependencies>
+
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>3.24.2</version>
+    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

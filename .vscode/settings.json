@@ -1,5 +1,9 @@
 {
     "cSpell.words": [
-        "usecases"
-    ]
+      "thelathereddragon",
+      "usecases"
+    ],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "coverage-gutters.showLineCoverage": true,
+    "maven.view": "hierarchical"
 }
