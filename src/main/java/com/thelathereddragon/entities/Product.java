@@ -4,10 +4,10 @@ import static com.thelathereddragon.entities.UnitOfMeasurement.GRAM;
 
 public class Product {
   public final int id;
-  public final String name;
-  public final String description;
-  public final int priceInCents;
-  public final Amount netWeight;
+  public String name;
+  public String description;
+  public int priceInCents;
+  public Amount netWeight;
 
   public Product() {
     this.id = 0;

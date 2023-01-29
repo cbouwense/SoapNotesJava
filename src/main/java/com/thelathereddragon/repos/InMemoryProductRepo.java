@@ -23,6 +23,14 @@ public class InMemoryProductRepo implements ProductRepo {
   }
 
   @Override
+  public Product fetch(String name) {
+    return products.stream()
+        .filter(p -> p.name.equals(name))
+        .findFirst()
+        .orElse(null);
+  }
+
+  @Override
   public void delete(Product product) {
     products.remove(product);
   }

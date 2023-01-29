@@ -18,13 +18,7 @@ public class DeleteProductTest {
   @Before
   public void setup() {
     productRepo = new InMemoryProductRepo();
-    product = new Product(
-        1,
-        "Redner's Olive Oil",
-        "The big jug at Redner's",
-        1000,
-        new Amount(51, OUNCE)
-    );
+    product = new Product();
 
     productRepo.save(product);
   }
@@ -32,9 +26,10 @@ public class DeleteProductTest {
   @Test
   public void executeDeletesFromRepo() {
     DeleteProduct deleteProduct = new DeleteProduct(productRepo);
+
     deleteProduct.execute(product);
     Product productFromRepo = productRepo.fetch(product);
     
-    assertEquals(productFromRepo, null);
+    assertEquals(null, productFromRepo);
   }
 }
