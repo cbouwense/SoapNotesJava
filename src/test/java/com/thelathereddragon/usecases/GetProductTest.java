@@ -37,7 +37,7 @@ public class GetProductTest {
     assertEquals(productFromRepo.id, product.id);
     assertEquals(productFromRepo.name, product.name);
     assertEquals(productFromRepo.description, product.description);
-    assertEquals(productFromRepo.netWeight.value, product.netWeight.value, 0.0);
-    assertEquals(productFromRepo.netWeight.unit, product.netWeight.unit);
+    assertEquals(productFromRepo.netWeight.getValue(), product.netWeight.getValue(), 0.0);
+    assertEquals(productFromRepo.netWeight.getUnit(), product.netWeight.getUnit());
   }
 }

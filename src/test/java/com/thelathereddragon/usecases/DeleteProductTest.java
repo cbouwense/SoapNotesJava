@@ -1,12 +1,10 @@
 package com.thelathereddragon.usecases;
 
-import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCE;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.thelathereddragon.entities.Amount;
 import com.thelathereddragon.entities.Product;
 import com.thelathereddragon.ports.ProductRepo;
 import com.thelathereddragon.repos.InMemoryProductRepo;
