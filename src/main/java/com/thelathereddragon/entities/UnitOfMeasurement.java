@@ -1,29 +1,29 @@
 package com.thelathereddragon.entities;
 
 public enum UnitOfMeasurement {
-  GRAM,
-  KILOGRAM,
-  OUNCE,
-  POUND,
-  MILLILITER,
-  TEASPOON,
-  TABLESPOON;
+  GRAMS,
+  KILOGRAMS,
+  OUNCES,
+  POUNDS,
+  MILLILITERS,
+  TEASPOONS,
+  TABLESPOONS;
 
   public double getGramsPerUnit() {
     switch (this) {
-      case GRAM:
+      case GRAMS:
         return 1;
-      case KILOGRAM:
+      case KILOGRAMS:
         return 1000;
-      case OUNCE:
+      case OUNCES:
         return 28.3495;
-      case POUND:
+      case POUNDS:
         return 453.592;
-      case MILLILITER:
+      case MILLILITERS:
         return 1;
-      case TEASPOON:
+      case TEASPOONS:
         return 4.92892;
-      case TABLESPOON:
+      case TABLESPOONS:
         return 14.7868;
       default:
         return 0;

@@ -1,6 +1,6 @@
 package com.thelathereddragon.usecases;
 
-import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCE;
+import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCES;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
@@ -23,7 +23,7 @@ public class GetProductTest {
         "Redner's Olive Oil",
         "The big jug at Redner's",
         1000,
-        new Amount(51, OUNCE)
+        new Amount(51, OUNCES)
     );
 
     productRepo.save(product);

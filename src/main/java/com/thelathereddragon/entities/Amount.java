@@ -1,5 +1,7 @@
 package com.thelathereddragon.entities;
 
+import static com.thelathereddragon.entities.UnitOfMeasurement.GRAMS;
+
 public class Amount {
   private double value;
   private UnitOfMeasurement unit;
@@ -10,7 +12,7 @@ public class Amount {
   }
 
   public Amount asGrams() {
-    return new Amount(value * unit.getGramsPerUnit(), UnitOfMeasurement.GRAM);
+    return new Amount(value * unit.getGramsPerUnit(), GRAMS);
   }
 
   public double getValue() {

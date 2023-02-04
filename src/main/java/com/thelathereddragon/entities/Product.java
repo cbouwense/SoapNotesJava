@@ -1,6 +1,6 @@
 package com.thelathereddragon.entities;
 
-import static com.thelathereddragon.entities.UnitOfMeasurement.GRAM;
+import static com.thelathereddragon.entities.UnitOfMeasurement.GRAMS;
 
 public class Product {
   public final int id;
@@ -14,7 +14,7 @@ public class Product {
     this.name = "";
     this.description = "";
     this.priceInCents = 0;
-    this.netWeight = new Amount(0, GRAM);
+    this.netWeight = new Amount(0, GRAMS);
   }
 
   public Product(int id, String name, String description, int priceInCents, Amount netWeight) {
