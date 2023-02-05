@@ -1,0 +1,9 @@
+{
+  "name": "test-product",
+  "description": "This is a test product",
+  "priceInCents": 1000,
+  "netWeight": {
+    "value": 51.0,
+    "unit": "OUNCES"
+  }
+}

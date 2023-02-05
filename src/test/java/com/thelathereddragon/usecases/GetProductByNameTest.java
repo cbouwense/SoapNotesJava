@@ -20,15 +20,15 @@ public class GetProductByNameTest {
     getProductByName = new GetProductByName(productRepo);
 
     product1 = new Product();
-    product1.name = "Test Product 1";
+    product1.setName("Test Product 1");
     product2 = new Product();
-    product2.name = "Test Product 2";
+    product2.setName("Test Product 2");
   }
 
   @Test
   public void executeGetsFromRepo() {
     productRepo.save(product1);
-    Product productFromRepo = getProductByName.execute(product1.name);
+    Product productFromRepo = getProductByName.execute(product1.getName());
     
     assertEquals(product1, productFromRepo);
   }
@@ -37,14 +37,14 @@ public class GetProductByNameTest {
   public void executeGetsFromRepoWhenMultipleProducts() {
     productRepo.save(product1);
     productRepo.save(product2);
-    Product productFromRepo = getProductByName.execute(product2.name);
+    Product productFromRepo = getProductByName.execute(product2.getName());
     
     assertEquals(product2, productFromRepo);
   }
 
   @Test
   public void executeReturnsNullWhenProductDoesNotExist() {
-    Product productFromRepo = getProductByName.execute(product1.name);
+    Product productFromRepo = getProductByName.execute(product1.getName());
     
     assertEquals(null, productFromRepo);
   }

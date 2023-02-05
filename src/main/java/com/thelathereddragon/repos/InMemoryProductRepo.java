@@ -25,7 +25,7 @@ public class InMemoryProductRepo implements ProductRepo {
   @Override
   public Product fetch(String name) {
     return products.stream()
-        .filter(p -> p.name.equals(name))
+        .filter(p -> p.getName().equals(name))
         .findFirst()
         .orElse(null);
   }

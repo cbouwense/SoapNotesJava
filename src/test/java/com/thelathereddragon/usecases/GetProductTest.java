@@ -19,7 +19,6 @@ public class GetProductTest {
   public void setup() {
     productRepo = new InMemoryProductRepo();
     product = new Product(
-        1,
         "Redner's Olive Oil",
         "The big jug at Redner's",
         1000,
@@ -34,10 +33,9 @@ public class GetProductTest {
     GetProduct getProduct = new GetProduct(productRepo);
     Product productFromRepo = getProduct.execute(product);
 
-    assertEquals(productFromRepo.id, product.id);
-    assertEquals(productFromRepo.name, product.name);
-    assertEquals(productFromRepo.description, product.description);
-    assertEquals(productFromRepo.netWeight.getValue(), product.netWeight.getValue(), 0.0);
-    assertEquals(productFromRepo.netWeight.getUnit(), product.netWeight.getUnit());
+    assertEquals(productFromRepo.getName(), product.getName());
+    assertEquals(productFromRepo.getDescription(), product.getDescription());
+    assertEquals(productFromRepo.getNetWeight().getValue(), product.getNetWeight().getValue(), 0.0);
+    assertEquals(productFromRepo.getNetWeight().getUnit(), product.getNetWeight().getUnit());
   }
 }

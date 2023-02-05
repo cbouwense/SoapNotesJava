@@ -3,22 +3,51 @@ package com.thelathereddragon.entities;
 import static com.thelathereddragon.entities.UnitOfMeasurement.GRAMS;
 
 public class Product {
-  public final int id;
-  public String name;
-  public String description;
-  public int priceInCents;
-  public Amount netWeight;
+  private String name;
+  private String description;
+  private int priceInCents;
+  private Amount netWeight;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public int getPriceInCents() {
+    return priceInCents;
+  }
+
+  public void setPriceInCents(int priceInCents) {
+    this.priceInCents = priceInCents;
+  }
+
+  public Amount getNetWeight() {
+    return netWeight;
+  }
+
+  public void setNetWeight(Amount netWeight) {
+    this.netWeight = netWeight;
+  }
 
   public Product() {
-    this.id = 0;
     this.name = "";
     this.description = "";
     this.priceInCents = 0;
     this.netWeight = new Amount(0, GRAMS);
   }
 
-  public Product(int id, String name, String description, int priceInCents, Amount netWeight) {
-    this.id = id;
+  public Product(String name, String description, int priceInCents, Amount netWeight) {
     this.name = name;
     this.description = description;
     this.priceInCents = priceInCents;
