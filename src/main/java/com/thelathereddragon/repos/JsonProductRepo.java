@@ -1,13 +1,13 @@
 package com.thelathereddragon.repos;
 
-import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCES;
-
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.thelathereddragon.entities.Amount;
 import com.thelathereddragon.entities.Product;
 import com.thelathereddragon.ports.ProductRepo;
 
@@ -33,20 +33,32 @@ public class JsonProductRepo implements ProductRepo {
 
     @Override
     public Product fetch(Product product) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(product.getName() + ".json"));
+            return jsonBuilder.fromJson(reader, Product.class);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     @Override
     public void delete(Product product) {
-        // TODO Auto-generated method stub
-        
+        File f = new File(product.getName() + ".json");
+        f.delete();
     }
 
     @Override
     public Product fetch(String name) {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(name + ".json"));
+            return jsonBuilder.fromJson(reader, Product.class);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return null;
+        }
     }
     
 }

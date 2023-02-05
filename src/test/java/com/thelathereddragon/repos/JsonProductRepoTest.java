@@ -2,24 +2,19 @@ package com.thelathereddragon.repos;
 
 import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCES;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.nio.file.FileSystem;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.google.common.jimfs.Configuration;
-import com.google.common.jimfs.Jimfs;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thelathereddragon.entities.Amount;
@@ -43,6 +38,12 @@ public class JsonProductRepoTest {
         repo = new JsonProductRepo(gson);
     }
 
+    @After
+    public void afterEach() {
+        File f = new File(product.getName() + ".json");
+        f.delete();
+    }
+
     @Test
     public void saveCreatesFileInFilesystem() {
         repo.save(product);
@@ -56,12 +57,47 @@ public class JsonProductRepoTest {
         repo.save(product);
 
         Reader reader = Files.newBufferedReader(Paths.get(product.getName() + ".json"));
-        Product retrievedProduct = gson.fromJson(reader, Product.class);
+        Product savedProduct = gson.fromJson(reader, Product.class);
         
-        assertEquals(product.getName(), retrievedProduct.getName());
-        assertEquals(product.getDescription(), retrievedProduct.getDescription());
-        assertEquals(product.getPriceInCents(), retrievedProduct.getPriceInCents());
-        assertEquals(product.getNetWeight().getUnit(), retrievedProduct.getNetWeight().getUnit());
-        assertEquals(product.getNetWeight().getValue(), retrievedProduct.getNetWeight().getValue(), 0.0);
+        assertTrue(product.equals(savedProduct));
+    }
+
+    @Test
+    public void fetchReturnsProductFromRepo() {
+        repo.save(product);
+        Product retrievedProduct = repo.fetch(product);
+
+        assertTrue(product.equals(retrievedProduct));
+    }
+
+    @Test
+    public void fetchRetursNullWhenProductNotInRepo() {
+        Product retrievedProduct = repo.fetch(product);
+
+        assertNull(retrievedProduct);
+    }
+
+    @Test
+    public void fetchByNameReturnsProductFromRepo() {
+        repo.save(product);
+        Product retrievedProduct = repo.fetch(product.getName());
+
+        assertTrue(product.equals(retrievedProduct));
+    }
+
+    @Test
+    public void fetchByNameRetursNullWhenProductNotInRepo() {
+        Product retrievedProduct = repo.fetch("non-existent-product");
+
+        assertNull(retrievedProduct);
+    }
+
+    @Test
+    public void deleteRemovesProductFromRepo() {
+        repo.save(product);
+        repo.delete(product);
+        Product retrievedProduct = repo.fetch(product);
+
+        assertNull(retrievedProduct);
     }
 }
