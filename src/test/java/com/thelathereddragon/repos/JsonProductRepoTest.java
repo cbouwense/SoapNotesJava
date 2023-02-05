@@ -35,14 +35,14 @@ public class JsonProductRepoTest {
             1000,
             new Amount(51, OUNCES)
         );
-        toProduct = Paths.get(Constants.repositoriesDirectory + product.getName() + ".json");
+        toProduct = Paths.get(Constants.productsDirectory + product.getName() + ".json");
         gson = new GsonBuilder().setPrettyPrinting().create();
         repo = new JsonProductRepo(gson);
     }
 
     @After
     public void afterEach() {
-        File f = new File(Constants.repositoriesDirectory + product.getName() + ".json");
+        File f = new File(Constants.productsDirectory + product.getName() + ".json");
         f.delete();
     }
 

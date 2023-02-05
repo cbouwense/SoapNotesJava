@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch JsonProductRepoTest",
+            "request": "launch",
+            "mainClass": "com.thelathereddragon.repos.JsonProductRepoTest",
+            "projectName": "my-app"
+        },
+        {
+            "type": "java",
             "name": "Launch JsonProductRepo",
             "request": "launch",
             "mainClass": "com.thelathereddragon.repos.JsonProductRepo",

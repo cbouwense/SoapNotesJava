@@ -62,11 +62,11 @@ public class JsonProductRepo implements ProductRepo {
     }
 
     private String pathFromProduct(Product product) {
-        return Constants.repositoriesDirectory + product.getName() + ".json";
+        return Constants.productsDirectory + product.getName() + ".json";
     }
 
     private String pathFromName(String name) {
-        return Constants.repositoriesDirectory + name + ".json";
+        return Constants.productsDirectory + name + ".json";
     }
     
 }
