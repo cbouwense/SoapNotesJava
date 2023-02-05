@@ -22,11 +22,11 @@ public class JsonProductRepo implements ProductRepo {
     @Override
     public void save(Product product) {
         try {
-            FileWriter writer = new FileWriter(product.getName() + ".json");
+            FileWriter writer = new FileWriter(pathFromProduct(product));
             jsonBuilder.toJson(product, writer);
             writer.close();
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred while saving product to repository.");
             e.printStackTrace();
         }      
     }
@@ -34,7 +34,7 @@ public class JsonProductRepo implements ProductRepo {
     @Override
     public Product fetch(Product product) {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(product.getName() + ".json"));
+            Reader reader = Files.newBufferedReader(Paths.get(pathFromProduct(product)));
             return jsonBuilder.fromJson(reader, Product.class);
         } catch (IOException e) {
             System.out.println("An error occurred.");
@@ -45,20 +45,28 @@ public class JsonProductRepo implements ProductRepo {
 
     @Override
     public void delete(Product product) {
-        File f = new File(product.getName() + ".json");
+        File f = new File(pathFromProduct(product));
         f.delete();
     }
 
     @Override
     public Product fetch(String name) {
         try {
-            Reader reader = Files.newBufferedReader(Paths.get(name + ".json"));
+            Reader reader = Files.newBufferedReader(Paths.get(pathFromName(name)));
             return jsonBuilder.fromJson(reader, Product.class);
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
             return null;
         }
+    }
+
+    private String pathFromProduct(Product product) {
+        return Constants.repositoriesDirectory + product.getName() + ".json";
+    }
+
+    private String pathFromName(String name) {
+        return Constants.repositoriesDirectory + name + ".json";
     }
     
 }

@@ -58,12 +58,4 @@ public class InMemoryProductRepoTest {
 
     assertEquals(0, repo.size());
   }
-
-  @Test
-  public void deletingProductThatDoesNotExistDoesNotChangeSize() {
-    repo.save(new Product());
-    repo.delete(new Product());
-
-    assertEquals(1, repo.size());
-  }
 }

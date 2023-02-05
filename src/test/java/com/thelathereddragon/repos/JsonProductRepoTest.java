@@ -1,7 +1,6 @@
 package com.thelathereddragon.repos;
 
 import static com.thelathereddragon.entities.UnitOfMeasurement.OUNCES;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -9,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.After;
@@ -25,6 +25,7 @@ public class JsonProductRepoTest {
     String fileName;
     private Gson gson;
     private JsonProductRepo repo;
+    private Path toProduct;
 
     @Before
     public void beforeEach() {
@@ -34,13 +35,14 @@ public class JsonProductRepoTest {
             1000,
             new Amount(51, OUNCES)
         );
+        toProduct = Paths.get(Constants.repositoriesDirectory + product.getName() + ".json");
         gson = new GsonBuilder().setPrettyPrinting().create();
         repo = new JsonProductRepo(gson);
     }
 
     @After
     public void afterEach() {
-        File f = new File(product.getName() + ".json");
+        File f = new File(Constants.repositoriesDirectory + product.getName() + ".json");
         f.delete();
     }
 
@@ -48,7 +50,7 @@ public class JsonProductRepoTest {
     public void saveCreatesFileInFilesystem() {
         repo.save(product);
 
-        File f = new File(product.getName() + ".json");
+        File f = new File(toProduct.toString());
         assertTrue(f.isFile());
     }
 
@@ -56,7 +58,7 @@ public class JsonProductRepoTest {
     public void saveCreatesFileWithCorrectJson() throws IOException {
         repo.save(product);
 
-        Reader reader = Files.newBufferedReader(Paths.get(product.getName() + ".json"));
+        Reader reader = Files.newBufferedReader(toProduct);
         Product savedProduct = gson.fromJson(reader, Product.class);
         
         assertTrue(product.equals(savedProduct));
