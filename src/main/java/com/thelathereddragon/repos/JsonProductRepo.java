@@ -15,7 +15,7 @@ public class JsonProductRepo implements ProductRepo {
     // TODO: I feel like this could be some kind of JsonBuilder class or interface. 
     private Gson jsonBuilder;
 
-    JsonProductRepo(Gson jsonBuilder) {
+    public JsonProductRepo(Gson jsonBuilder) {
         this.jsonBuilder = jsonBuilder;
     }
 
