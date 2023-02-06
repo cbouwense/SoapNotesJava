@@ -1,0 +1,9 @@
+{
+  "name": "home-health-organic-castor-oil",
+  "description": "amazon castor oil",
+  "priceInCents": 599,
+  "netWeight": {
+    "value": 16.0,
+    "unit": "OUNCES"
+  }
+}

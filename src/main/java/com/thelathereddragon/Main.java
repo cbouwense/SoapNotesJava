@@ -11,7 +11,7 @@ import com.thelathereddragon.usecases.GetProductByName;
 
 public class Main {
     public static void main(String[] args) {
-        ProductRepo productRepo = new JsonProductRepo(new Gson());
+        ProductRepo productRepo = new JsonProductRepo(new GsonBuilder().setPrettyPrinting().create());
         GetProductByName getProduct = new GetProductByName(productRepo);
 
         get("/products/:name", (req, res) -> {
@@ -24,7 +24,9 @@ public class Main {
             res.type("application/json");
             Product p = new Gson().fromJson(req.body(), Product.class);
             productRepo.save(p);
-            return new GsonBuilder().create().toJson(p);
+            
+            Product savedProduct = productRepo.fetch(p.getName());
+            return new GsonBuilder().create().toJson(savedProduct);
         });
     }
 }

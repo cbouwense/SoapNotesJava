@@ -7,5 +7,6 @@
     "java.configuration.updateBuildConfiguration": "automatic",
     "coverage-gutters.showLineCoverage": true,
     "maven.view": "hierarchical",
-    "java.debug.settings.onBuildFailureProceed": true
+    "java.debug.settings.onBuildFailureProceed": true,
+    "java.compile.nullAnalysis.mode": "automatic"
 }
