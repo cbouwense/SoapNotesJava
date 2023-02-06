@@ -20,30 +20,6 @@ public class JsonProductRepo implements ProductRepo {
     }
 
     @Override
-    public void save(Product product) {
-        try {
-            FileWriter writer = new FileWriter(pathFromProduct(product));
-            jsonBuilder.toJson(product, writer);
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving product to repository.");
-            e.printStackTrace();
-        }      
-    }
-
-    @Override
-    public Product fetch(Product product) {
-        try {
-            Reader reader = Files.newBufferedReader(Paths.get(pathFromProduct(product)));
-            return jsonBuilder.fromJson(reader, Product.class);
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
     public void delete(Product product) {
         File f = new File(pathFromProduct(product));
         f.delete();
@@ -59,6 +35,47 @@ public class JsonProductRepo implements ProductRepo {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Product fetch(Product product) {
+        try {
+            Reader reader = Files.newBufferedReader(Paths.get(pathFromProduct(product)));
+            return jsonBuilder.fromJson(reader, Product.class);
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public Product[] fetchAll() {
+        try {
+            File[] listOfFiles = new File(Constants.productsDirectory).listFiles();
+            Product[] products = new Product[listOfFiles.length];
+            for (int i = 0; i < listOfFiles.length; i++) {
+                Reader reader = Files.newBufferedReader(Paths.get(listOfFiles[i].getPath()));
+                products[i] = jsonBuilder.fromJson(reader, Product.class);
+            }
+            return products;
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
+    public void save(Product product) {
+        try {
+            FileWriter writer = new FileWriter(pathFromProduct(product));
+            jsonBuilder.toJson(product, writer);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving product to repository.");
+            e.printStackTrace();
+        }      
     }
 
     private String pathFromProduct(Product product) {

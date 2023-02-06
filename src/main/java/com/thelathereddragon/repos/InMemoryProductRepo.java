@@ -31,6 +31,11 @@ public class InMemoryProductRepo implements ProductRepo {
   }
 
   @Override
+  public Product[] fetchAll() {
+    return products.toArray(new Product[products.size()]);
+  }
+
+  @Override
   public void delete(Product product) {
     products.remove(product);
   }
